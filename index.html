@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sarsa Co. | Gourmet Pasta Sauces</title>
+    <meta name="description" content="Sarsa Co. - A premium fusion of Bacolod heritage and Italian inspiration. Small-batch gourmet pasta sauces handcrafted for the discerning palate.">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,400&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="atelier-theme">
+    <div id="grain-overlay"></div>
+
+  
+    <nav id="atelier-nav">
+        <div class="nav-pill">
+            <button id="menu-toggle" aria-label="Open Menu">
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+            </button>
+            <a href="#hero" class="brand-logo">SARSA<span>CO.</span></a>
+            <div class="nav-links">
+                <a href="#catalogue">The Reserve</a>
+                <a href="#about">Heritage</a>
+                <a href="#faqs">Library</a>
+            </div>
+            <button id="bag-btn">
+                <svg viewBox="0 0 24 24" fill="none" class="bag-icon" stroke="currentColor" stroke-width="1.5">
+                    <path d="M6 8V7a6 6 0 1 1 12 0v1m2 0H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-9a2 2 0 0 0-2-2z"/>
+                </svg>
+                <span class="bag-label">Bag</span>
+                <span id="bag-count">0</span>
+            </button>
+        </div>
+    </nav>
+
+    <main>
+        <section id="hero" class="snap-section">
+            <div class="hero-container">
+                <div class="hero-content">
+                    <span class="pre-title reveal-fade">PROUDLY MADE IN BACOLOD. INSPIRED BY ITALY.</span>
+                    <h1 class="reveal-up">THE <span>VINTAGE</span> <br> BATCH.</h1>
+                    <p class="reveal-fade">A meticulous fusion of sun-ripened organic tomatoes and slow-simmered traditions. Engineering the perfect sauce, one jar at a time.</p>
+                    <div class="hero-actions reveal-fade">
+                        <a href="#catalogue" class="btn btn-primary">Discover the Reserve</a>
+                    </div>
+                </div>
+                <div class="hero-visual reveal-fade">
+                    <div class="parallax-wrapper">
+                        <img src="https://images.unsplash.com/photo-1590487933189-d910f1359c38?auto=format&fit=crop&q=80&w=2000" alt="Culinary Heritage" class="hero-img">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="catalogue" class="snap-section">
+            <div class="section-title-wrap reveal-fade">
+                <h2 class="section-title">The Boutique Collection</h2>
+                <div class="divider-gold"></div>
+            </div>
+
+            <div class="carousel-viewport">
+                <div class="carousel-track">
+
+                        <div class="product-reveal reveal-up" data-id="1" data-name="Spaghetti Sauce" data-price="450.00">
+                            <div class="product-image-container">
+                                <img src="assets/spaghetti_sauce.png" alt="Spaghetti Sauce" class="product-img">
+                            </div>
+                            <div class="product-details">
+                                <span class="product-category">CLASSIC TRADITION</span>
+                                <h3>Spaghetti Sauce</h3>
+                                <p>Our signature slow-simmered tomato sauce, infused with local Bacolod herbs and sun-ripened sweetness.</p>
+                                <button class="add-to-bag">Add to Bag — ₱450.00</button>
+                            </div>
+                        </div>
+
+                        <div class="product-reveal reveal-up" data-id="2" data-name="Carbonara Sauce" data-price="550.00">
+                            <div class="product-image-container">
+                                <img src="assets/carbonara_sauce.webp" alt="Carbonara Sauce" class="product-img">
+                            </div>
+                            <div class="product-details">
+                                <span class="product-category">SILKY INDULGENCE</span>
+                                <h3>Carbonara Sauce</h3>
+                                <p>A creamy, velvet-smooth blend of aged cheeses and smoky guanciale flavors. Pure Roman luxury.</p>
+                                <button class="add-to-bag">Add to Bag — ₱550.00</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        </section>
+
+       
+        <section id="about" class="snap-section">
+            <div class="statement-container">
+                <div class="statement-aside reveal-fade">
+                    <span class="tag">02 / HERITAGE</span>
+                </div>
+                <div class="statement-main">
+                    <h2 class="reveal-up">We believe in the <span>Power of Patience</span>.</h2>
+                    <p class="reveal-fade">In a world of mass production, we remain small. We remain slow. Our process respects the rhythm of the ingredients, ensuring every jar is a masterpiece of Italian-inspired craftsmanship.</p>
+                    <div class="stats-grid reveal-fade">
+                        <div class="stat">
+                            <span class="stat-num">08</span>
+                            <span class="stat-lbl">Hours of Simmer</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-num">100</span>
+                            <span class="stat-lbl">% Organic Origin</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-num">Small</span>
+                            <span class="stat-lbl">Batch Reserve</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    
+        <section id="faqs" class="snap-section">
+            <div class="container-narrow">
+                <div class="section-title-wrap reveal-fade">
+                    <h2 class="section-title">The Culinary Library</h2>
+                    <p class="section-sub">Guidance for the discerning palate.</p>
+                </div>
+                <div class="accordion-atelier">
+                    <div class="accordion-group reveal-up">
+                        <div class="accordion-head">What defines this Reserve? <span class="plus"></span></div>
+                        <div class="accordion-body">It is the rejection of the ordinary. We use only top-tier organic ingredients, strictly following traditional methods with zero preservatives.</div>
+                    </div>
+                    <div class="accordion-group reveal-up">
+                        <div class="accordion-head">Pairing Suggestions <span class="plus"></span></div>
+                        <div class="accordion-body">Our Spaghetti Sauce excels with long pastas like linguine, while the Carbonara is best matched with artisanal fettuccine or rigatoni.</div>
+                    </div>
+                    <div class="accordion-group reveal-up">
+                        <div class="accordion-head">Order Processing Time <span class="plus"></span></div>
+                        <div class="accordion-body">As our batches are small and artisanal, please allow 2-3 business days for preparation and secure transit to your kitchen.</div>
+                    </div>
+                    <div class="accordion-group reveal-up">
+                        <div class="accordion-head">Shipping Policy <span class="plus"></span></div>
+                        <div class="accordion-body">We offer complimentary white-glove delivery within Metro Manila. For provincial orders, our select logistics partners ensure secure transit within 5-7 business days.</div>
+                    </div>
+                    <div class="accordion-group reveal-up">
+                        <div class="accordion-head">Refund Policy <span class="plus"></span></div>
+                        <div class="accordion-body">Due to the artisanal and perishable nature of our Reserve batches, we cannot accept returns once opened. However, if your delivery is compromised, a replacement batch will be dispatched immediately.</div>
+                    </div>
+                    <div class="accordion-group reveal-up">
+                        <div class="accordion-head">Privacy Policy <span class="plus"></span></div>
+                        <div class="accordion-body">Your privacy is treated with the same respect as our traditions. Personal data is utilized exclusively for order fulfillment and boutique communications. We never share your details with external entities.</div>
+                    </div>
+                    <div class="accordion-group reveal-up">
+                        <div class="accordion-head">Accessibility Statement <span class="plus"></span></div>
+                        <div class="accordion-body">We are dedicated to ensuring a seamless digital experience for all connoisseurs. If you encounter any accessibility barriers, our boutique concierge is available to assist at concierge@sarsa.co.</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-container">
+            <div class="footer-brand">
+                <div class="logo">SARSA<span>CO.</span></div>
+                <p>Curating the intersection of heritage and modernity.</p>
+            </div>
+            <div class="footer-nav">
+                <div class="footer-list">
+                    <h4>Dialogue</h4>
+                    <p class="footer-subtext">Join our boutique newsletter for upcoming reserve updates.</p>
+                    <form id="newsletter-atelier">
+                        <input type="email" placeholder="YOUR EMAIL ADDRESS" required>
+                        <button type="submit">JOIN</button>
+                    </form>
+                </div>
+                <div class="footer-list">
+                    <h4>Direct</h4>
+                    <a href="#hero">Intro</a>
+                    <a href="#catalogue">Reserve</a>
+                    <a href="#about">Heritage</a>
+                    <a href="#faqs">Library</a>
+                </div>
+                <div class="footer-list">
+                    <h4>Connect</h4>
+                    <a href="#" target="_blank">Instagram</a>
+                    <a href="#" target="_blank">Facebook</a>
+                    <a href="mailto:concierge@sarsa.co">Email Us</a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Sarsa Co. Bacolod, PH.</p>
+            <p class="designed-by">Crafted with precision.</p>
+        </div>
+    </footer>
+
+    <div id="side-bag" class="bag-system">
+        <div class="bag-overlay"></div>
+        <div class="bag-content">
+            <div class="bag-top">
+                <h3>YOUR SELECTION</h3>
+                <button id="close-bag">&times;</button>
+            </div>
+            <div class="bag-step-container">
+
+                <div id="bag-step-1" class="bag-step active">
+                    <div id="bag-items-list" class="bag-items">
+                        <p class="empty-msg">Begin your selection from the reserve...</p>
+                    </div>
+                </div>
+                <div id="bag-step-2" class="bag-step">
+                    <button id="back-to-items" class="back-link">&larr; Back to Selection</button>
+                    <div class="shipping-details-form">
+                        <div class="form-group">
+                            <label>FULL NAME</label>
+                            <input type="text" id="reserve-name" placeholder="Signore / Signora">
+                        </div>
+                        <div class="form-group">
+                            <label>SHIPPING ADDRESS</label>
+                            <textarea id="reserve-address" placeholder="Where shall we deliver?"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label>CONTACT NUMBER</label>
+                            <input type="text" id="reserve-phone" placeholder="+63 ...">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="bag-bottom">
+                <div class="subtotal">
+                    <span>Subtotal</span>
+                    <span id="bag-total">₱0.00</span>
+                </div>
+                <p class="disclaimer">Complimentary white-glove shipping within Bacolod.</p>
+                <button id="checkout-action" class="btn-checkout">RESERVE NOW</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="reserve-success" class="modal-system">
+        <div class="modal-content">
+            <div class="success-glyph">✓</div>
+            <h2>ORDER SIGNALED</h2>
+            <p>We are preparing your batch for fulfillment. A specialist will reach out within the hour.</p>
+            <button id="modal-close" class="btn btn-primary">Return to Gallery</button>
+        </div>
+        <div class="modal-overlay"></div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
