@@ -3,11 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sarsa Co. | Concierge Admin Dashboard</title>
+    <title>Sarsa Co. | Admin Dashboard</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../style.css">
+    <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg">
 
     <link rel="stylesheet" href="admin.css">
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
@@ -36,7 +37,7 @@
     <main class="admin-main">
         <header class="admin-header container">
             <p class="admin-label">ADMIN ACCESS</p>
-            <h1>Reserve Dashboard</h1>
+            <h1>Dashboard</h1>
             
             <div class="admin-stats">
                 <div class="stat-card">
@@ -91,7 +92,7 @@
     </main>
     <div id="admin-modal" class="modal-overlay hidden">
         <div class="modal-card">
-            <p class="modal-eyebrow">CONCIERGE DASHBOARD</p>
+            <p class="modal-eyebrow">ADMIN DASHBOARD</p>
             <h2 class="modal-title" id="modal-title">Confirm Action</h2>
             <p class="modal-message" id="modal-message">Are you sure?</p>
             <div class="modal-actions">
@@ -101,7 +102,6 @@
         </div>
     </div>
 
-    <!-- Receipt Viewer Modal -->
     <div id="receipt-modal" class="modal-overlay hidden">
         <div class="receipt-viewer-card">
             <div class="receipt-viewer-header">
