@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sarsa Co. | Dashboard Access</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../style.css">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        /* Hide browser default password reveal icons */
+        input::-ms-reveal,
+        input::-ms-clear {
+            display: none;
+        }
+
+        body {
+            background-color: var(--bone);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: var(--font-main);
+            overflow-x: hidden;
+        }
+
+        .login-wrapper {
+            width: 100%;
+            max-width: 440px;
+            padding: 2rem;
+            animation: loginFadeIn 0.6s var(--ease-apple) both;
+        }
+
+        @keyframes loginFadeIn {
+            from { opacity: 0; transform: translateY(24px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+
+        .login-brand {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .login-brand .logo {
+            font-family: var(--font-serif);
+            font-size: 2.8rem;
+            font-weight: 600;
+            letter-spacing: 6px;
+            color: var(--noir);
+            text-decoration: none;
+        }
+
+        .login-brand .logo span {
+            color: var(--red);
+        }
+
+        .login-brand p {
+            font-size: 0.62rem;
+            letter-spacing: 3px;
+            font-weight: 700;
+            color: var(--gold);
+            margin-top: 0.6rem;
+        }
+
+        .login-card {
+            background: white;
+            border-radius: var(--radius);
+            padding: 4.5rem;
+            box-shadow: 0 40px 100px rgba(0,0,0,0.08);
+            border: 1px solid rgba(0,0,0,0.04);
+            text-align: center;
+        }
+
+        .login-card h2 {
+            font-family: var(--font-serif);
+            font-size: 2.5rem;
+            font-weight: 400;
+            margin-bottom: 1rem;
+            color: var(--noir);
+            line-height: 1;
+        }
+
+        .login-card .subtitle {
+            font-size: 0.75rem;
+            letter-spacing: 1px;
+            color: var(--text-secondary);
+            margin-bottom: 3.5rem;
+            text-transform: uppercase;
+            font-weight: 600;
+        }
+
+        .login-field {
+            position: relative;
+            margin-bottom: 3.5rem;
+            text-align: center;
+        }
+
+        .login-field label {
+            display: block;
+            font-size: 0.65rem;
+            letter-spacing: 3px;
+            font-weight: 800;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 1.5rem;
+        }
+
+        .login-field input {
+            width: 100%;
+            padding: 1rem 0;
+            border: none;
+            border-bottom: 1px solid rgba(0,0,0,0.1);
+            background: transparent;
+            font-family: var(--font-main);
+            font-size: 1.1rem;
+            color: var(--noir);
+            outline: none;
+            transition: border-color 0.3s ease;
+            text-align: center;
+        }
+
+        .login-field input:focus {
+            border-bottom-color: var(--gold);
+            background: transparent;
+        }
+
+        .login-field input.error {
+            border-bottom-color: var(--red);
+        }
+
+        .input-wrapper {
+            position: relative;
+        }
+
+        .btn-toggle-pw {
+            position: absolute;
+            right: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0;
+            color: #bbb;
+            display: flex;
+            align-items: center;
+            transition: color 0.2s ease;
+        }
+
+        .btn-toggle-pw:hover {
+            color: var(--noir);
+        }
+
+        .btn-toggle-pw svg {
+            width: 18px;
+            height: 18px;
+        }
+
+
+        .error-msg {
+            font-size: 0.75rem;
+            color: var(--red);
+            margin-top: 0.5rem;
+            display: none;
+        }
+
+        .error-msg.visible {
+            display: block;
+            animation: shake 0.4s ease;
+        }
+
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25%       { transform: translateX(-6px); }
+            75%       { transform: translateX(6px); }
+        }
+
+        .btn-login {
+            width: 100%;
+            background: var(--noir);
+            color: white;
+            border: none;
+            padding: 1.2rem;
+            border-radius: var(--radius-sm);
+            font-family: var(--font-main);
+            font-size: 0.7rem;
+            font-weight: 700;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            cursor: pointer;
+            margin-top: 0.5rem;
+            transition: all 0.3s var(--ease-apple);
+            position: relative;
+        }
+
+        .btn-login:hover {
+            background: var(--red);
+        }
+
+        .btn-login:active {
+            transform: scale(0.97);
+        }
+
+        .btn-login.loading {
+            color: transparent;
+            pointer-events: none;
+        }
+
+        .btn-login.loading::after {
+            content: '';
+            position: absolute;
+            inset: 0; margin: auto;
+            width: 18px; height: 18px;
+            border: 2px solid rgba(255,255,255,0.35);
+            border-top-color: white;
+            border-radius: 50%;
+            animation: spin 0.7s linear infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        .login-footer {
+            text-align: center;
+            margin-top: 2rem;
+            font-size: 0.72rem;
+            color: #bbb;
+        }
+    </style>
+</head>
+<body class="atelier-theme">
+    <div id="grain-overlay"></div>
+
+    <div class="login-wrapper">
+        <div class="login-brand">
+            <a class="logo" href="../../">SARSA<span>CO.</span></a>
+            <p>ADMIN ACCESS</p>
+        </div>
+
+        <div class="login-card">
+            <h2>Sign In</h2>
+            <p class="subtitle">Enter your credentials to access the dashboard.</p>
+
+            <form id="login-form" novalidate>
+                <div class="login-field">
+                    <label for="admin-password">Access Password</label>
+                    <div class="input-wrapper">
+                        <input
+                            type="password"
+                            id="admin-password"
+                            placeholder="••••••••"
+                            autocomplete="current-password"
+                            required
+                        >
+                        <button type="button" class="btn-toggle-pw" id="toggle-pw" aria-label="Toggle password visibility">
+                            <!-- Eye open -->
+                            <svg id="icon-eye" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178z" />
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                            </svg>
+                            <!-- Eye slash (hidden) -->
+                            <svg id="icon-eye-slash" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" style="display:none">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M3.98 8.223A10.477 10.477 0 001.934 12C3.226 16.338 7.244 19.5 12 19.5c.993 0 1.953-.138 2.863-.395M6.228 6.228A10.45 10.45 0 0112 4.5c4.756 0 8.773 3.162 10.065 7.498a10.523 10.523 0 01-4.293 5.774M6.228 6.228L3 3m3.228 3.228l3.65 3.65m7.894 7.894L21 21m-3.228-3.228l-3.65-3.65m0 0a3 3 0 10-4.243-4.243m4.242 4.242L9.88 9.88" />
+                            </svg>
+                        </button>
+                    </div>
+                    <p class="error-msg" id="error-msg">Incorrect password. Please try again.</p>
+                </div>
+
+
+                <button type="submit" class="btn-login" id="login-btn">Access Dashboard</button>
+            </form>
+        </div>
+
+        <p class="login-footer">Sarsa Co. &copy; 2026 &mdash; Restricted Area</p>
+    </div>
+
+    <script src="../login.js"></script>
+</body>
+</html>

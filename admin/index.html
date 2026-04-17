@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sarsa Co. | Concierge Admin Dashboard</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../style.css">
+
+    <link rel="stylesheet" href="admin.css">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script>
+        if (sessionStorage.getItem('sarsa_admin_auth') !== 'true') {
+            window.location.replace('/admin/login/');
+        }
+    </script>
+</head>
+<body class="atelier-theme admin-page">
+    <div id="grain-overlay"></div>
+
+    <nav id="atelier-nav">
+        <div class="nav-pill">
+            <a href="../" class="brand-logo">SARSA<span>CO.</span></a>
+
+            <div class="nav-links">
+                <span class="admin-label">ADMIN DASHBOARD</span>
+            </div>
+            <div id="connection-status" class="status-indicator">Connecting...</div>
+            <button id="logout-btn" class="btn-logout">Log Out</button>
+        </div>
+    </nav>
+
+
+    <main class="admin-main">
+        <header class="admin-header container">
+            <p class="admin-label">ADMIN ACCESS</p>
+            <h1>Reserve Dashboard</h1>
+            
+            <div class="admin-stats">
+                <div class="stat-card">
+                    <span id="pending-count" class="stat-value">0</span>
+                    <span class="stat-label">Pending Orders</span>
+                </div>
+                <div class="stat-card">
+                    <span id="total-revenue" class="stat-value">₱0.00</span>
+                    <span class="stat-label">Total Revenue</span>
+                </div>
+            </div>
+        </header>
+
+        <section class="orders-section container">
+            <div class="filter-bar">
+                <div class="status-filters">
+                    <button class="filter-btn active" data-status="pending">Pending</button>
+                    <button class="filter-btn" data-status="finished">Finished</button>
+                </div>
+                <div class="date-filter-group">
+                    <label for="date-select">Filter by Date</label>
+                    <input type="date" id="date-select" class="admin-date-input">
+                    <button id="clear-date" class="btn-clear">&times;</button>
+                </div>
+            </div>
+
+
+            <div class="table-container fade-in">
+                <table class="admin-table">
+                    <thead>
+                        <tr>
+                            <th>DATE & TIME</th>
+                            <th>CUSTOMER</th>
+                            <th>CONTACT</th>
+                            <th>ADDRESS</th>
+                            <th>ITEMS</th>
+                            <th>TOTAL</th>
+                            <th>PAYMENT</th>
+                            <th>ACTIONS</th>
+
+                        </tr>
+                    </thead>
+                    <tbody id="orders-body">
+                        <tr>
+                            <td colspan="7" class="loading-msg">Fetching the reserve...</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+    </main>
+    <div id="admin-modal" class="modal-overlay hidden">
+        <div class="modal-card">
+            <p class="modal-eyebrow">CONCIERGE DASHBOARD</p>
+            <h2 class="modal-title" id="modal-title">Confirm Action</h2>
+            <p class="modal-message" id="modal-message">Are you sure?</p>
+            <div class="modal-actions">
+                <button id="modal-cancel" class="modal-btn modal-btn-cancel">Cancel</button>
+                <button id="modal-confirm" class="modal-btn modal-btn-confirm">Confirm</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Receipt Viewer Modal -->
+    <div id="receipt-modal" class="modal-overlay hidden">
+        <div class="receipt-viewer-card">
+            <div class="receipt-viewer-header">
+                <p class="modal-eyebrow">PAYMENT VERIFICATION</p>
+                <button id="close-receipt" class="btn-close-large">&times;</button>
+            </div>
+            <div class="receipt-image-container">
+                <img id="receipt-img" src="" alt="Payment Receipt">
+            </div>
+            <div class="receipt-viewer-footer">
+                <a id="download-receipt" href="#" download="receipt.jpg" class="modal-btn modal-btn-confirm">
+                    Download Receipt
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <script src="admin.js"></script>
+</body>
+</html>
